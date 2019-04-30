@@ -31,9 +31,9 @@ class BooksSpider(scrapy.Spider):
             item["link"] = result.css("a ::attr(href)")
             item["price"] = result.css("span::text")
             item["descr"] = result.css("a::text")
-
-        yield item
 '''
+        yield item
+
 
 '''
         for book_url in response.css("div.sh-dgr__grid-result > h3 > a ::attr(href)").extract():
