@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import pkgutil
+import logging
 
 
 class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
     data = pkgutil.get_data("books", "resources/urls.txt")
+    logging.warning("This is a warning")
     start_urls = data[1]
 
     def parse(self, response):
