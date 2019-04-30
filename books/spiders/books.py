@@ -18,10 +18,10 @@ class BooksSpider(scrapy.Spider):
         item = {}
 
         results = response.css(
-            "div.products columns-4 egm-products > article").extract()
+            "div.products columns-4 egm-products > article").getall()
         logging.warning(results)
         logging.warning(len(results))
-        item["price"] = results.css("span.woocommerce-Price-amount amount ::text")
+        item["price"] = results[0].css("span.woocommerce-Price-amount amount ::text")
 
         
         yield item
