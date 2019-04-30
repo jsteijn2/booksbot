@@ -12,17 +12,25 @@ class BooksSpider(scrapy.Spider):
     keywords = pkgutil.get_data("books", "resources/keywords.txt")
     keylines = keywords.splitlines()
     for line in keylines:
-        line = "https://www.google.com/search?q=" + line + "&hl=nl&tbm=shop&tbs=p_ord:p&ei=aBjIXLCBOILPwAKhhpmQAw&ved=0ahUKEwiw1duzw_fhAhWCJ1AKHSFDBjIQuw0IswQoAg"
+        line = "https://www.google.com/search?q=" + line + \
+            "&hl=nl&tbm=shop&tbs=p_ord:p&ei=aBjIXLCBOILPwAKhhpmQAw&ved=0ahUKEwiw1duzw_fhAhWCJ1AKHSFDBjIQuw0IswQoAg"
     start_urls = urls.splitlines() + keylines
 
     def parse(self, response):
         item = {}
         item["title"] = response.css("h1 ::text").extract_first()
+
+        results = response.css("div.sh-dgr__grid-result").extract()
+        for result in results[:10]:
+            item["link"] = result.css("a ::attr(href)")
+            item["price"] = result.css("span::text")
+            item["descr"] = result.css("a::text")
+
         yield item
 
 
 '''
-        for book_url in response.css("article.product_pod > h3 > a ::attr(href)").extract():
+        for book_url in response.css("div.sh-dgr__grid-result > h3 > a ::attr(href)").extract():
             yield scrapy.Request(response.urljoin(book_url), callback=self.parse_book_page)
         next_page = response.css("li.next > a ::attr(href)").extract_first()
         if next_page:
