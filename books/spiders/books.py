@@ -18,7 +18,7 @@ class BooksSpider(scrapy.Spider):
 
     def parse(self, response):
         item = {}
-        item["everything"] = response.css["div"]
+        item["everything"] = response.css["div"].extract
         logging.warning(response.ccs["div"])
         item["title"] = response.css("h1 ::text").extract_first()
 
