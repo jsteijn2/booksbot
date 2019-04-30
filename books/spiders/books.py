@@ -20,7 +20,7 @@ class BooksSpider(scrapy.Spider):
         results = response.css(
             "div.products columns-4 egm-products > article")
         logging.warning(results)
-        logging.warning(results.lenght)
+        logging.warning(len(results))
         item["price"] = results.css("span.woocommerce-Price-amount amount ::text")
 
         
