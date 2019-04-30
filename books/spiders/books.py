@@ -20,7 +20,7 @@ class BooksSpider(scrapy.Spider):
         results = response.css(
             "div.products columns-4 egm-products > article")
         logging.warning(results)
-        item["price"] = results.css("span.price ::text")
+        item["price"] = results.css("span.price > span > span ::text")
         
         yield item
 
