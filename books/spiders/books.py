@@ -6,8 +6,7 @@ class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
     start_urls = [
-        'https://li.wikipedia.org/wiki/Nederlands_Limburg',
-        'https://li.wikipedia.org/wiki/Belsj'
+        'https://www.google.com/shopping'
     ]
 
 
