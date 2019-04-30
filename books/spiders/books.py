@@ -10,15 +10,18 @@ class BooksSpider(scrapy.Spider):
     keywords = pkgutil.get_data("books", "resources/keywords.txt")
     keylines = keywords.splitlines()
     for line in keylines:
-        line = "https://www.google.com/search?q=" + line + \
-            "&hl=nl&tbm=shop&tbs=p_ord:p&ei=aBjIXLCBOILPwAKhhpmQAw&ved=0ahUKEwiw1duzw_fhAhWCJ1AKHSFDBjIQuw0IswQoAg"
+        line = "https://douchezaak.nl/?s=" + line + "&post_type=product"
     start_urls = urls.splitlines() + keylines
     logging.warning("URL's: " + urls + keywords)
 
     def parse(self, response):
         item = {}
 
-        item["title"] = response.css("div.product-name > h1 ::text").extract_first()
+        results = response.css(
+            "div.products columns-4 egm-products > article").extract()
+
+        item["price"] = results[0].css("span.price ::text")
+        item["title"] = results[0].css("h2::text")
         yield item
 
 
