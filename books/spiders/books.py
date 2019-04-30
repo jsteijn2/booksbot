@@ -5,8 +5,7 @@ import scrapy
 class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
-
-    with open("urls.txt", "rt") as f:
+    with open("resources/urls.txt", "rt") as f:
             start_urls = start_urls = [url.strip() for url in f.readlines()]
 
     def parse(self, response):
