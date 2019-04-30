@@ -19,7 +19,6 @@ class BooksSpider(scrapy.Spider):
         item = {}
 
         item["title"] = response.css("div.product-name > h1 ::text").extract_first()
-        item["rdm"] = response.css("a.account-button u-hide u-show-block@tablet-l-up omniture_customer_menu").extract_first()
         yield item
 
 
