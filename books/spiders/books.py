@@ -20,6 +20,7 @@ class BooksSpider(scrapy.Spider):
         item = {}
         
         item["title"] = response.css("h1 ::text").extract_first()
+        yield item
 '''
         item["everything"] = response.css["div"].extract
         logging.warning(response.ccs["div"])
@@ -32,8 +33,6 @@ class BooksSpider(scrapy.Spider):
             item["price"] = result.css("span::text")
             item["descr"] = result.css("a::text")
 '''
-        yield item
-
 
 '''
         for book_url in response.css("div.sh-dgr__grid-result > h3 > a ::attr(href)").extract():
