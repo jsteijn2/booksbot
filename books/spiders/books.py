@@ -18,9 +18,15 @@ class BooksSpider(scrapy.Spider):
 
     def parse(self, response):
         item = {}
-        
+
         item["title"] = response.css("h1 ::text").extract_first()
+        try:
+            item["something"] = response.css("div.sh-dgr__grid-result")[0]
+        except:
+            pass
         yield item
+
+
 '''
         item["everything"] = response.css["div"].extract
         logging.warning(response.ccs["div"])
