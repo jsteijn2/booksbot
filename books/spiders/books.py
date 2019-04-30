@@ -14,7 +14,7 @@ class BooksSpider(scrapy.Spider):
         line = "https://www.google.com/search?q=" + line + \
             "&hl=nl&tbm=shop&tbs=p_ord:p&ei=aBjIXLCBOILPwAKhhpmQAw&ved=0ahUKEwiw1duzw_fhAhWCJ1AKHSFDBjIQuw0IswQoAg"
     start_urls = urls.splitlines() + keylines
-    logging.warning("URL's: " + start_urls)
+    logging.warning("URL's: " + urls + keywords)
 
     def parse(self, response):
         item = {}
