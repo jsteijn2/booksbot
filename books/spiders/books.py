@@ -19,13 +19,16 @@ class BooksSpider(scrapy.Spider):
 
         results = response.css(
             "div.products columns-4 egm-products > article")
-
-        item["price"] = results[0].css("span.price ::text")
-        item["title"] = results[0].css("h2::text")
+        logging.warning(results)
+        item["price"] = results.css("span.price ::text")
+        
         yield item
 
 
 '''
+        item["title"] = results[0].css("h2::text")
+
+
         item["everything"] = response.css["div"].extract
         logging.warning(response.ccs["div"])
 
