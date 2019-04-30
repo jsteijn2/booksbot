@@ -6,13 +6,13 @@ class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
     start_urls = [
-        'http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html',
+        'https://li.wikipedia.org/wiki/Nederlands_Limburg',
+        'https://li.wikipedia.org/wiki/Belsj'
     ]
 
 
     def parse(self, response):
         item = {}
-        product = response.css("div.product_main")
         item["title"] = response.css("h1 ::text").extract_first()
         yield item
         
