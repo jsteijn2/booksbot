@@ -20,10 +20,7 @@ class BooksSpider(scrapy.Spider):
         item = {}
 
         item["title"] = response.css("h1 ::text").extract_first()
-        try:
-            item["something"] = response.css("div.sh-dgr__grid-result")[0]
-        except:
-            pass
+        item["rdm"] = respons.css("a.account-button u-hide u-show-block@tablet-l-up omniture_customer_menu").extract_first()
         yield item
 
 
