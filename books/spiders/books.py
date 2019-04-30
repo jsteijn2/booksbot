@@ -18,9 +18,11 @@ class BooksSpider(scrapy.Spider):
 
     def parse(self, response):
         item = {}
+        
+        item["title"] = response.css("h1 ::text").extract_first()
+'''
         item["everything"] = response.css["div"].extract
         logging.warning(response.ccs["div"])
-        item["title"] = response.css("h1 ::text").extract_first()
 
         results = response.css("div.sh-dgr__grid-result").extract()
         logging.warning(results[0])
@@ -31,7 +33,7 @@ class BooksSpider(scrapy.Spider):
             item["descr"] = result.css("a::text")
 
         yield item
-
+'''
 
 '''
         for book_url in response.css("div.sh-dgr__grid-result > h3 > a ::attr(href)").extract():
