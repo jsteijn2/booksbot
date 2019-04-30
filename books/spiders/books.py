@@ -21,7 +21,8 @@ class BooksSpider(scrapy.Spider):
         item["title"] = response.css("h1 ::text").extract_first()
 
         results = response.css("div.sh-dgr__grid-result").extract()
-        item["FullHTML"] = results[0]
+        logging.warning(results[0])
+
         for result in results[:10]:
             item["link"] = result.css("a ::attr(href)")
             item["price"] = result.css("span::text")
