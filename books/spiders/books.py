@@ -9,7 +9,7 @@ class BooksSpider(scrapy.Spider):
     allowed_domains = ["books.toscrape.com"]
     data = pkgutil.get_data("books", "resources/urls.txt")
     logging.warning(data)
-    start_urls = data[1]
+    start_urls = data.splitlines()
 
     def parse(self, response):
         item = {}
