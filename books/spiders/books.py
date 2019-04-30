@@ -18,7 +18,7 @@ class BooksSpider(scrapy.Spider):
         item = {}
 
         results = response.css(
-            "div.products columns-4 egm-products > article").extract()
+            "div.products columns-4 egm-products > article")
 
         item["price"] = results[0].css("span.price ::text")
         item["title"] = results[0].css("h2::text")
