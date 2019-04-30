@@ -5,7 +5,7 @@ setup(
     version='1.0',
     packages=find_packages(),
     package_data={
-        'books': ['resources/keywords.txt']
+        'books': ['resources/keywords.txt', 'resources/urls.txt']
     },
     entry_points={
         'scrapy': ['settings = books.settings']

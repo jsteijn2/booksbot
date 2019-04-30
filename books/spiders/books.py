@@ -7,6 +7,8 @@ import logging
 class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
+    urls = pkgutil.get_data("books", "resources/urls.txt")
+    logging.warning("URL's: " + urls)
     keywords = pkgutil.get_data("books", "resources/keywords.txt")
     keylines = keywords.splitlines()
     for line in keylines:
