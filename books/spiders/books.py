@@ -6,7 +6,6 @@ import logging
 
 class BooksSpider(scrapy.Spider):
     name = "books"
-    allowed_domains = ["books.toscrape.com"]
     urls = pkgutil.get_data("books", "resources/urls.txt")
     keywords = pkgutil.get_data("books", "resources/keywords.txt")
     keylines = keywords.splitlines()
@@ -19,7 +18,7 @@ class BooksSpider(scrapy.Spider):
     def parse(self, response):
         item = {}
 
-        item["title"] = response.css("h1 ::text").extract_first()
+        item["title"] = response.css("div.product-name > h1 ::text").extract_first()
         item["rdm"] = response.css("a.account-button u-hide u-show-block@tablet-l-up omniture_customer_menu").extract_first()
         yield item
 
