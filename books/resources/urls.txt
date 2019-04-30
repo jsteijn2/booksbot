@@ -1,3 +1,1 @@
-https://www.google.com/search?q=kraan&hl=nl&tbm=shop&tbs=p_ord:p&ei=aBjIXLCBOILPwAKhhpmQAw&ved=0ahUKEwiw1duzw_fhAhWCJ1AKHSFDBjIQuw0IswQoAg
-https://stackoverflow.com/questions/10897339/python-fetch-first-10-results-from-a-list
 https://li.wikipedia.org/wiki/Nederlands_Limburg
