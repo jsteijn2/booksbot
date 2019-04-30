@@ -13,7 +13,7 @@ class BooksSpider(scrapy.Spider):
     def parse(self, response):
         item = {}
         product = response.css("div.product_main")
-        item["title"] = product.css("h1 ::text").extract_first()
+        item["title"] = response.css("h1 ::text").extract_first()
         yield item
         
 '''
