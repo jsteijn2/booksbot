@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import pkgutil
 
 
 class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
-    with open("resources/urls.txt", "rt") as f:
-            start_urls = start_urls = [url.strip() for url in f.readlines()]
+    data = pkgutil.get_data("books", "resources/urls.txt")
+    start_urls = data[1]
 
     def parse(self, response):
         item = {}
