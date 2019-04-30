@@ -7,9 +7,13 @@ import logging
 class BooksSpider(scrapy.Spider):
     name = "books"
     allowed_domains = ["books.toscrape.com"]
-    data = pkgutil.get_data("books", "resources/urls.txt")
-    logging.warning(data)
-    start_urls = data.splitlines()
+    urls = pkgutil.get_data("books", "resources/urls.txt")
+    logging.warning("URL's: " + urls)
+    keywords = pkgutil.get_data("books", "resources/keywords.txt")
+    keylines = keywords.splitlines()
+    for line in keylines:
+        line = "https://www.google.com/search?q=" + line + "&hl=nl&tbm=shop&tbs=p_ord:p&ei=aBjIXLCBOILPwAKhhpmQAw&ved=0ahUKEwiw1duzw_fhAhWCJ1AKHSFDBjIQuw0IswQoAg"
+    start_urls = urls.splitlines() + keylines
 
     def parse(self, response):
         item = {}
