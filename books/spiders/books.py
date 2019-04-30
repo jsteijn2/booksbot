@@ -18,7 +18,7 @@ class BooksSpider(scrapy.Spider):
         item = {}
 
         results = response.css(
-            "div.products columns-4 egm-products > article")
+            "div.products columns-4 egm-products > article").extract()
         logging.warning(results)
         logging.warning(len(results))
         item["price"] = results.css("span.woocommerce-Price-amount amount ::text")
